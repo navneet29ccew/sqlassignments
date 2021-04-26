@@ -1,0 +1,76 @@
+SQL> create table stock
+  2  (stockid int,
+  3  stock_type varchar(20),
+  4  purchase int,
+  5  qty_sold int,
+  6  stock_code varchar(10)
+  7  );
+
+Table created.
+SQL> create table sales
+  2  (dateandtime timestamp,
+  3  productid int,
+  4  qtr1_sales int,
+  5  qtr2_sales int,
+  6  profit int
+  7  );
+
+Table created.
+SQL> insert into stock values(1,'textile',500,250,'txtoo');
+
+1 row created.
+
+SQL> insert into stock values(2,'electronics',4000,1500,'etco1');
+
+1 row created.
+
+SQL> select* from stock;
+
+   STOCKID STOCK_TYPE             PURCHASE   QTY_SOLD STOCK_CODE
+---------- -------------------- ---------- ---------- ----------
+         1 textile                     500        250 txtoo
+         2 electronics                4000       1500 etco1
+SQL> insert into sales values(current_timestamp,25,2400,1600,750);
+
+1 row created.
+
+SQL> insert into sales values(current_timestamp,45,2200,1200,800);
+
+1 row created.
+
+SQL> select* from sales;
+
+DATEANDTIME
+---------------------------------------------------------------------------
+ PRODUCTID QTR1_SALES QTR2_SALES     PROFIT
+---------- ---------- ---------- ----------
+26-APR-21 03.44.20.994000 PM
+        25       2400       1600        750
+
+26-APR-21 03.45.00.687000 PM
+        45       2200       1200        800
+
+SQL> select to_char
+  2  (sysdate,'dd-mm-yyyy hh24:mi:ss') "now" from dual;
+
+now
+-------------------
+26-04-2021 15:55:42
+
+SQL> select to_char(sysdate,'dd/mm/yyyy')from dual;
+
+TO_CHAR(SY
+----------
+26/04/2021
+
+SQL> select to_char(date'2021-04-26','DAY') day from dual;
+
+DAY
+---------
+MONDAY
+
+SQL>  SELECT sysdate+10 as "Date+10" from dual;
+
+Date+10
+---------
+06-MAY-21
