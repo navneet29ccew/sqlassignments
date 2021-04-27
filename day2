@@ -1,0 +1,256 @@
+task1
+SQL> create table employee
+  2  (empfname varchar(20),
+  3  empmname varchar(20),
+  4  emplname varchar(20),
+  5  empage int check(empage between 1 and 49),
+  6  empcity varchar(20) check(empcity like 'b%'),
+  7  empdesignation varchar(20) check(empdesignation like '%manager'),
+  8  empid varchar(10) primary key,
+  9  empdob date
+ 10  );
+
+Table created.
+
+SQL> insert into employee values('ram','shyam','yadav',34,'bombay','acc manager','emp01','12-oct-1996');
+
+1 row created.
+
+SQL> insert into employee values('vaibhav','kumar','singh',38,'bareilly','sales manager','emp02','15-jan-1992');
+
+1 row created.
+
+SQL> insert into employee values('kamlesh','ramesh','shaw',38,'bareilly','stock manager','emp03','02-mar-1993');
+
+1 row created.
+
+SQL> insert into employee values('navpreet','gurleen','sahni',25,'bijapur','purchase manager','emp04','22-feb-1995');
+
+1 row created.
+
+SQL> insert into employee values('anish','manish','sahu',46,'bina','service manager','emp05','19-aug-1997');
+
+1 row created.
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLNAME                 EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID      EMPDOB
+-------------------- -------------------- ---------- ---------
+ram                  shyam                yadav                        34
+bombay               acc manager          emp01      12-OCT-96
+
+vaibhav              kumar                singh                        38
+bareilly             sales manager        emp02      15-JAN-92
+
+kamlesh              ramesh               shaw                         38
+bareilly             stock manager        emp03      02-MAR-93
+
+
+EMPFNAME             EMPMNAME             EMPLNAME                 EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID      EMPDOB
+-------------------- -------------------- ---------- ---------
+navpreet             gurleen              sahni                        25
+bijapur              purchase manager     emp04      22-FEB-95
+
+anish                manish               sahu                         46
+bina                 service manager      emp05      19-AUG-97
+
+
+
+SQL> update employee set empcity = 'bangalore' where empid like 'emp03';
+
+1 row updated.
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLNAME                 EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID      EMPDOB
+-------------------- -------------------- ---------- ---------
+ram                  shyam                yadav                        34
+bombay               acc manager          emp01      12-OCT-96
+
+vaibhav              kumar                singh                        38
+bareilly             sales manager        emp02      15-JAN-92
+
+kamlesh              ramesh               shaw                         38
+bangalore            stock manager        emp03      02-MAR-93
+
+
+EMPFNAME             EMPMNAME             EMPLNAME                 EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID      EMPDOB
+-------------------- -------------------- ---------- ---------
+navpreet             gurleen              sahni                        25
+bijapur              purchase manager     emp04      22-FEB-95
+
+anish                manish               sahu                         46
+bina                 service manager      emp05      19-AUG-97
+
+
+
+SQL> delete from employee where empcity = 'bina';
+
+1 row deleted.
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLNAME                 EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID      EMPDOB
+-------------------- -------------------- ---------- ---------
+ram                  shyam                yadav                        34
+bombay               acc manager          emp01      12-OCT-96
+
+vaibhav              kumar                singh                        38
+bareilly             sales manager        emp02      15-JAN-92
+
+kamlesh              ramesh               shaw                         38
+bangalore            stock manager        emp03      02-MAR-93
+
+
+EMPFNAME             EMPMNAME             EMPLNAME                 EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID      EMPDOB
+-------------------- -------------------- ---------- ---------
+navpreet             gurleen              sahni                        25
+bijapur              purchase manager     emp04      22-FEB-95
+
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLNAME                 EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID      EMPDOB
+-------------------- -------------------- ---------- ---------
+ram                  shyam                yadav                        34
+bombay               acc manager          emp01      12-OCT-96
+
+vaibhav              kumar                singh                        38
+bareilly             sales manager        emp02      15-JAN-92
+
+kamlesh              ramesh               shaw                         38
+bangalore            stock manager        emp03      02-MAR-93
+
+
+EMPFNAME             EMPMNAME             EMPLNAME                 EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID      EMPDOB
+-------------------- -------------------- ---------- ---------
+navpreet             gurleen              sahni                        25
+bijapur              purchase manager     emp04      22-FEB-95
+
+anish                manish               sahu                         46
+bina                 service manager      emp05      19-AUG-97
+
+
+
+
+SQL> select empfname,empmname,emplname,empdob from employee;
+
+EMPFNAME             EMPMNAME             EMPLNAME             EMPDOB
+-------------------- -------------------- -------------------- ---------
+ram                  shyam                yadav                12-OCT-96
+vaibhav              kumar                singh                15-JAN-92
+kamlesh              ramesh               shaw                 02-MAR-93
+navpreet             gurleen              sahni                22-FEB-95
+anish                manish               sahu                 19-AUG-97
+
+
+SQL> select empfname,empmname,emplname,to_char(empdob,'dd-mm-yy') from employee;
+
+EMPFNAME             EMPMNAME             EMPLNAME             TO_CHAR(
+-------------------- -------------------- -------------------- --------
+ram                  shyam                yadav                12-10-96
+vaibhav              kumar                singh                15-01-92
+kamlesh              ramesh               shaw                 02-03-93
+navpreet             gurleen              sahni                22-02-95
+anish                manish               sahu                 19-08-97
+
+
+SQL> select substr(empfname,1,1) ||'.'|| substr(empmname,1,1) ||'.'|| emplname from employee;
+
+SUBSTR(EMPFNAME,1,1)||'.'||SUB
+------------------------------
+r.s.yadav
+v.k.singh
+k.r.shaw
+n.g.sahni
+a.m.sahu
+
+
+task2
+SQL> create table detailn
+  2  (day varchar(20),
+  3  sess int,
+  4  faculty varchar(20),
+  5  sem int,
+  6  room varchar(20),
+  7  subject varchar(20),
+  8  unique(day,sess,faculty),
+  9  unique(day,sess,sem),
+ 10  unique(day,sess,room));
+
+Table created.
+
+SQL> insert into detailn values('mon',1,'John',7,'r1','Java');
+
+1 row created.
+
+SQL> insert into detailn values('mon',1,'John',5,'r2','testing');
+insert into detailn values('mon',1,'John',5,'r2','testing')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXCTEST.SYS_C007037) violated
+
+
+SQL> insert into detailn values('mon',1,'cena',7,'r3','dbms');
+insert into detailn values('mon',1,'cena',7,'r3','dbms')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXCTEST.SYS_C007038) violated
+
+
+SQL> insert into detailn values('mon',1,'rock',7,'r4','ds');
+insert into detailn values('mon',1,'rock',7,'r4','ds')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXCTEST.SYS_C007038) violated
+
+
+SQL> insert into detailn values('mon',1,'john',7,'r1','java');
+insert into detailn values('mon',1,'john',7,'r1','java')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXCTEST.SYS_C007038) violated
+
+
+SQL> insert into detailn values('tue',1,'john',7,'r1','java');
+
+1 row created.
+
+SQL> insert into detailn values('mon',2,'john',7,'r1','java');
+
+1 row created.
+
+SQL> select * from detailn;
+
+DAY                        SESS FACULTY                     SEM
+-------------------- ---------- -------------------- ----------
+ROOM                 SUBJECT
+-------------------- --------------------
+mon                           1 John                          7
+r1                   Java
+
+tue                           1 john                          7
+r1                   java
+
+mon                           2 john                          7
+r1                   java
