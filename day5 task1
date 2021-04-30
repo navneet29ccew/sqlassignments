@@ -1,0 +1,85 @@
+public class Task {
+	String hasUpper(String str)
+	{
+		String ans="no";
+		char[] cha = str.toCharArray();
+		for(int i=0;i<str.length();i++)
+	{
+		if(cha[i]>='A' && cha[i]<='Z')
+			ans="yes";
+	}
+		return ans;
+	}
+
+public static void main(String args[])
+	{
+		String str="Navne0t";
+		Task task1 = new Task();
+		String res = task1.hasUpper(str);
+		System.out.println(task1.hasUpper(str));
+		  
+    }
+
+String hasNumber(String str)
+	{
+		String ans="no";
+		char[] cha = str.toCharArray();
+		for(int i=0;i<str.length();i++)
+		{
+			if(cha[i]>='0' && cha[i]<='9')
+				ans="yes";
+		}
+		return ans;
+	}
+
+public static void main(String args[])
+	{
+		String str="Navne0t";
+		Task task1 = new Task();
+		String res = task1.hasNumber(str);
+		System.out.println(task1.hasNumber(str));
+		  
+    }
+
+boolean isCapsOnly(String str)
+	{
+		boolean ans=true;
+		char[] cha = str.toCharArray();
+		for(int i=0;i<str.length();i++)
+		{
+			if(cha[i]>=97 && cha[i]<=122)
+				ans=false;
+		}
+		return ans;
+	}
+public static void main(String args[])
+	{
+		String str="Navne0t";
+		Task task1 = new Task();
+		boolean res = task1.isCapsOnly(str);
+		System.out.println(task1.isCapsOnly(str));
+		  
+    }
+
+int countCaps(String str)
+	{
+		int count=0;
+		char[] cha = str.toCharArray();
+		for(int i=0;i<str.length();i++)
+		{
+			if(cha[i]>='A' && cha[i]<='Z')
+				count++;
+		}
+		return count;
+	}
+
+public static void main(String args[])
+	{
+		String str="Navne0t";
+		Task task1 = new Task();
+		int res = task1.countCaps(str);
+		System.out.println(task1.countCaps(str));
+		  
+    }
+}
+
