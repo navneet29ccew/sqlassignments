@@ -1,0 +1,178 @@
+interface Number
+{
+	boolean phoneNumberFormat(String Number);
+}
+abstract class countryFrm implements Number{
+}
+class India extends countryFrm 
+{
+	public boolean phoneNumberFormat(String Number)
+	{
+		char[] arr=Number.toCharArray();
+		boolean res=false;
+		int c=0;
+			if((arr[0]=='+')&&(arr[1]=='9')&&(arr[2]=='1')&&(arr[3]=='-'))
+			{
+				for(int i=4;i<arr.length;i++)
+				{
+					if((arr[i]>='0')&&(arr[i]<='9'))
+						c=c+1;
+				}
+				if(c==10)
+					res=true;
+			}
+			else
+				res=false;
+		return res;
+	}
+}
+class Brazil extends countryFrm
+{
+	public boolean phoneNumberFormat(String Number)
+	{
+		char[] arr=Number.toCharArray();
+		boolean res=false;
+		int c=0;
+			if((arr[0]=='+')&&(arr[1]=='5')&&(arr[2]=='5')&&(arr[3]==' '))
+			{
+				if((arr[4]=='1')&&(arr[5]=='5')&&(arr[6]==' '))
+				{
+				for(int i=7;i<arr.length;i++)
+				{
+					if((arr[i]>='0')&&(arr[i]<='9'))
+						c=c+1;
+					if((arr[i]=='-')&&(i==12))
+					{
+						c=c+1;
+					}
+				}
+				if((c==10))
+					res=true;
+				}
+				else
+					res=false;
+			}
+			else
+				res=false;
+		return res;
+	}
+}
+class Norway extends countryFrm
+{
+	public boolean phoneNumberFormat(String Number)
+	{
+		char[] arr=Number.toCharArray();
+		boolean res=false;
+		int c=0;
+		if((arr[0]=='+')&&(arr[1]=='4')&&(arr[2]=='7')&&(arr[3]=='-')&&(arr[4]=='4'))
+		{
+			for(int i=5;i<arr.length;i++)
+			{
+				if((arr[i]>='0')&&(arr[i]<='9'))
+					c=c+1;
+				if((arr[i]=='-')&&(i%3==0))
+				{
+					c=c+1;
+				}
+			}
+			if((c==10))
+				res=true;
+			else
+				res=false;
+		}
+		else
+			res=false;	
+		return res;
+	}
+}
+class Qatar extends countryFrm
+{
+	public boolean phoneNumberFormat(String Number)
+	{
+		char[] arr=Number.toCharArray();
+		boolean res=false;
+		int c=0;
+			if((arr[0]=='+')&&(arr[1]=='9')&&(arr[2]=='7')&&(arr[3]=='4')&&(arr[4]==' '))
+			{
+				if((arr[5]=='3')&&(arr[6]=='3'))
+				{
+				for(int i=7;i<arr.length;i++)
+				{
+					if((arr[i]>='0')&&(arr[i]<='9'))
+						c=c+1;
+					if((arr[i]=='-')&&(i==9))
+					{
+						c=c+1;
+					}
+				}
+				if((c==7))
+					res=true;
+				}
+				else
+					res=false;
+			}
+			else
+				res=false;
+		return res;
+	}
+}
+class Turkey extends countryFrm
+{
+	public boolean phoneNumberFormat(String Number)
+	{
+		char[] arr=Number.toCharArray();
+		boolean res=false;
+		int c=0;
+			if((arr[0]=='+')&&(arr[1]=='9')&&(arr[2]=='0')&&(arr[3]==' ')&&(arr[4]=='5'))
+			{
+				if((arr[5]=='0')&&(arr[6]=='9')&&(arr[7]=='-'))
+				{
+				for(int i=8;i<arr.length;i++)
+				{
+					if((arr[i]>='0')&&(arr[i]<='9'))
+						c=c+1;
+				}
+				if((c==6))
+					res=true;
+				}
+				else
+					res=false;
+			}
+			else
+				res=false;
+			if(res==false)
+			{	
+				if((arr[0]=='0')&&(arr[1]=='5')&&(arr[2]=='0')) {
+				for(int i=3;i<arr.length;i++)
+				{
+					if((arr[i]>='0')&&(arr[i]<='9'))
+						c=c+1;
+					if((arr[i]=='-')&&(i%4==0))
+					{
+						c=c+1;
+					}
+				}
+				if(c==9)
+					res=true;
+			}
+			else
+				res=false;
+	}
+		return res;
+	}
+}
+public class Country
+ {
+	public static void main(String[] args) {
+	India ind=new India();
+	Brazil bz=new Brazil();
+	Norway nw=new Norway();
+	Qatar qt=new Qatar();
+	Turkey tk=new Turkey();
+	boolean r1=ind.phoneNumberFormat("+91-9987654321");
+	boolean r2=bz.phoneNumberFormat("+55 15 78906-5678");
+	boolean r3=nw.phoneNumberFormat("+47-49-12-34-56");
+	boolean r4=qt.phoneNumberFormat("+974 3389-4567");
+	boolean r5=tk.phoneNumberFormat("0508-567-567");
+    System.out.println("India: "+r1+"\nBrazil: "+r2+"\nNorway: "+r3+"\nQatar: "+r4+"\nTurkey: "+r5);
+}
