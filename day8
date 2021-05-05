@@ -1,0 +1,106 @@
+package com.mycollections;
+
+public class Cars {
+	private String cname;
+	private String style;
+	private String model;
+	private String cost;
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public String getCost() {
+		return cost;
+	}
+	public void setCost(String string) {
+		this.cost = string;
+	}
+	public Cars(String cname, String style, String model, String cost) {
+		super();
+		this.cname = cname;
+		this.style = style;
+		this.model = model;
+		this.cost = cost;
+	}
+	
+	public Cars() {
+	}
+	
+	public String toString() {
+		return "Cars [cname=" + cname + ", style=" + style + ", model=" + model + ", cost=" + cost + "]";
+	}
+	
+	
+	
+}
+
+
+
+
+package com.mycollections;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Scanner;
+
+
+
+public class Showroom
+{
+	public static void main(String[] args) {
+	
+		Cars car1=new Cars("hyundai","sedan","xcent","above 5lakhs");
+		Cars car2=new Cars("suzuki","sedan","ciaz","above 10lakhs");
+		
+		
+		ArrayList<Cars> hyundai=new ArrayList<>();
+		
+		
+		hyundai.add(car1);
+		hyundai.add(car2);
+		
+		HashSet<Cars> newS1=new HashSet<Cars>(hyundai);
+		
+		Cars car3=new Cars("hyundai","micro","i20","above 3lakhs");
+		Cars car4=new Cars("suzuki","micro","swift","above 4lakhs");
+		Cars car5=new Cars("suzuki","mini","alto","above 3lakhs");
+		
+		ArrayList<Cars> suzuki=new ArrayList<>();
+		
+		suzuki.add(car3);
+		suzuki.add(car4);
+		suzuki.add(car4);
+		
+		HashSet<Cars> newS2=new HashSet<Cars>(suzuki);
+		
+		Map<String , HashSet<Cars>> showrooms=new HashMap<String, HashSet<Cars>>();
+		
+		showrooms.put("hyundai",newS1);
+		showrooms.put("suzuki",newS2);
+		
+		System.out.println("Enter showroom name to see the list of Cars");
+		Scanner sc=new Scanner(System.in);
+		String showroom=sc.nextLine();
+		
+		HashSet<Cars> Showroom1=showrooms.get(showroom);
+		for(Cars car:Showroom1)
+		{
+			System.out.println(car);
+		}
+	}
